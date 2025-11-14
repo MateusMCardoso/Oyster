@@ -291,11 +291,12 @@ li {
     /* --- Home Hero Mobile --- */
     .home-hero {
         flex-direction: column;
-        justify-content: center; /* Centraliza verticalmente no mobile */
-        min-height: 100vh;
-        padding-top: 51px;
+        justify-content: center;
+        max-height: 100vh;
+        padding-left: 0;     /* <--- ADICIONE ESTA LINHA */
+        padding-right: 0;    /* <--- ADICIONE ESTA LINHA */
+        padding-top: 0; 
         gap: 1rem;
-        /* Retorna ao alinhamento padrão */
         align-items: center;
     }
 
@@ -311,29 +312,42 @@ li {
     }
 
     .hero-title {
+        position:absolute;
         font-size: 2.5rem;
         margin-bottom: 0.5rem;
+        bottom: 150px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center
     }
     
     .hero-stars {
+        position:absolute;
         width: 100px;
         margin: 1rem auto 0;
+        bottom: 260px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center
     }
 
     .hero-image {
-        position: static;
+        position: relative;   /* <-- MUDANÇA 1: Precisa ser 'relative' */
         width: 100%;
-        height: auto;
+        height: 100vh;        /* <-- MUDANÇA 2: Precisa de uma altura definida */
         display: block;
-        order: 2; /* Imagem depois */
+        overflow: hidden;     /* <-- Correto: Isso vai cortar o excesso */
+        order: 2;
     }
 
     .model-img {
-        width: 100%;
-        max-width: 300px; /* Limita o tamanho da modelo no mobile */
-        max-height: none; /* Reseta a altura máxima */
+        position: absolute;
+        width: auto;
+        max-height: 800px; 
         height: auto;
         display: block;
-        margin: 0 auto;
+        bottom: 0;
+        left: 40%;
+        transform: translateX(-50%);
     }
 }
