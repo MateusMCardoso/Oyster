@@ -328,7 +328,8 @@ li {
         bottom: 260px;
         left: 50%;
         transform: translateX(-50%);
-        text-align: center
+        text-align: center;
+        display: hide;
     }
 
     .hero-image {
