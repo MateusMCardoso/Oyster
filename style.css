@@ -119,19 +119,10 @@ li {
     background: 
         radial-gradient(
             circle 600px at var(--mouse-x) var(--mouse-y),
-            #d1b680b4, /* Sua cor dourada, mas suave (40 = ~25% opacidade) */
+            var(--gold), /* Sua cor dourada, mas suave (40 = ~25% opacidade) */
             transparent 80%
         ),
-        radial-gradient(
-            circle 400px at 10% 20%,
-            #d4d4d4,
-            transparent 40%
-        ),
-        radial-gradient(
-            circle 300px at 80% 90%,
-            #c5c1bb,
-            transparent 35%
-        ),
+
         var(--base-bg); /* Sua cor de fundo base */
     
     background-repeat: no-repeat;
@@ -151,13 +142,22 @@ li {
     color: var(--gold);
     line-height: 1;
     margin-bottom: 1rem;
+    margin-left: 10rem;
     max-width: 600px;
+    transition: 1s color;
 }
+
+.hero-title:hover {
+    color: var(--white);
+    cursor:default;
+}
+
 
 .hero-stars {
     width: 120px;
     height: auto;
     margin-top: 1.5rem;
+    margin-left: 10rem;
     display: block;
 }
 
@@ -182,8 +182,8 @@ li {
 }
 
 .model-img {
-    max-height: 85vh; /* Permite que a imagem toque a base */
-    max-width: 800px;
+    max-height: 100vh; /* Permite que a imagem toque a base */
+    max-width: 1300px;
     height: auto;
     width: 100%;
     display: block;
@@ -303,22 +303,27 @@ li {
     .hero-content {
         /* Remove o auto-alinhamento */
         align-self: auto;
-        position: static;
+        position: relative; /* <--- MUDANÇA AQUI */
         transform: none;
         text-align: center;
         width: 100%;
-        padding: 1rem 1rem 0;
-        order: 1; /* Texto primeiro */
+        padding: 0 1rem;
+        position: absolute;
+        height: 100%;
+        z-index: 2;
+        /* Adiciona flexbox para centralizar o conteúdo */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Alinha o conteúdo na parte de baixo */
+        padding-bottom: 20vh;      /* Empurra para cima, para o terço inferior */
+        align-items: center;
     }
 
     .hero-title {
-        position:absolute;
+        /* Remove o posicionamento absoluto para o flexbox funcionar */
+        position: static;
         font-size: 2.5rem;
-        margin-bottom: 0.5rem;
-        bottom: 120px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center
+        margin: 0; /* Remove margens desnecessárias */
     }
     
     .hero-stars {
@@ -338,7 +343,6 @@ li {
         height: 100vh;        /* <-- MUDANÇA 2: Precisa de uma altura definida */
         display: block;
         overflow: hidden;     /* <-- Correto: Isso vai cortar o excesso */
-        order: 2;
     }
 
     .model-img {
@@ -348,7 +352,7 @@ li {
         height: auto;
         display: block;
         bottom: 0;
-        left: 40%;
+        left: 35%;
         transform: translateX(-50%);
     }
 }
