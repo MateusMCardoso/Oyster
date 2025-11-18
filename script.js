@@ -1,104 +1,98 @@
-// 1. Seleciona os elementos que vamos usar
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
+document.addEventListener("DOMContentLoaded", () => {
+    /* ================================== */
+    /* MENU HAMBÚRGUER                    */
+    /* ================================== */
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    const navLinks = navMenu ? navMenu.querySelectorAll(".nav-link") : [];
 
-// 2. Adiciona um "ouvidor de clique" ao hamburguer
-hamburger.addEventListener("click", () => {
-    // Quando clicado, ele "liga/desliga" a classe "active"
-    // em AMBOS os elementos.
-    
-    // Isso anima o ícone hamburguer (para "X" e de volta)
-    hamburger.classList.toggle("active");
-    
-    // Isso faz o menu aparecer (deslizando) e desaparecer
-    navMenu.classList.toggle("active");
-});
+    const toggleNavigation = () => {
+        const isOpen = hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+        hamburger.setAttribute("aria-expanded", String(isOpen));
+    };
 
-// (Opcional) Fecha o menu ao clicar em um link
-// Isso é útil para páginas de uma só seção (Single Page)
-document.querySelectorAll(".nav-link").forEach(link => {
-    link.addEventListener("click", () => {
-        // Remove a classe "active" de ambos ao clicar em um link
-        hamburger.classList.remove("active");
-        navMenu.classList.remove("active");
-    });
-});
+    if (hamburger && navMenu) {
+        hamburger.addEventListener("click", toggleNavigation);
 
-
-/* ================================== */
-/* CÓDIGO DO BOTÃO WHATSAPP C/ DELAY  */
-/* ================================== */
-
-// 1. Seleciona o botão
-const whatsappButton = document.querySelector(".whatsapp-button");
-
-// 2. Variável para guardar o "timer"
-let leaveTimeout = null;
-
-// 3. Quando o mouse ENTRA no botão
-whatsappButton.addEventListener("mouseenter", () => {
-    // Cancela qualquer "timer" de saída que estiver ativo
-    // Isso impede que o botão encolha se o mouse sair e voltar rápido
-    if (leaveTimeout) {
-        clearTimeout(leaveTimeout);
-        leaveTimeout = null;
+        navLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+                hamburger.setAttribute("aria-expanded", "false");
+            });
+        });
     }
-    
-    // Adiciona a classe que expande o botão
-    whatsappButton.classList.add("hover-active");
-});
 
-// 4. Quando o mouse SAI do botão
-whatsappButton.addEventListener("mouseleave", () => {
-    // Cria um "timer" de 2 segundos (2000ms) para remover a classe
-    leaveTimeout = setTimeout(() => {
-        whatsappButton.classList.remove("hover-active");
-    }, 50); // 2 segundos de delay
-});
+    /* ================================== */
+    /* CÓDIGO DO BOTÃO WHATSAPP C/ DELAY  */
+    /* ================================== */
+    const whatsappButton = document.querySelector(".whatsapp-button");
+    let leaveTimeout = null;
+    const LEAVE_DELAY_MS = 50;
 
-/* ================================== */
-/* ANIMAÇÃO DE TEXTO DIGITADO NA HOME */
-/* ================================== */
+    if (whatsappButton) {
+        whatsappButton.addEventListener("mouseenter", () => {
+            if (leaveTimeout) {
+                clearTimeout(leaveTimeout);
+                leaveTimeout = null;
+            }
 
-const typedTextSpan = document.querySelector(".typed-text");
-const cursorSpan = document.querySelector(".cursor");
+            whatsappButton.classList.add("hover-active");
+        });
 
-const textArray = ["seu sorriso.", "sua saúde.", "sua família."]; // Textos para digitar
-const typingDelay = 100; // Velocidade de digitação (ms)
-const erasingDelay = 70; // Velocidade de apagar (ms)
-const newTextDelay = 1500; // Tempo antes de começar a digitar o próximo texto (ms)
-let textArrayIndex = 0;
-let charIndex = 0;
-
-function type() {
-    if (charIndex < textArray[textArrayIndex].length) {
-        if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-        typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(type, typingDelay);
-    } else {
-        cursorSpan.classList.remove("typing");
-        setTimeout(erase, newTextDelay);
+        whatsappButton.addEventListener("mouseleave", () => {
+            leaveTimeout = setTimeout(() => {
+                whatsappButton.classList.remove("hover-active");
+            }, LEAVE_DELAY_MS);
+        });
     }
-}
 
-function erase() {
-    if (charIndex > 0) {
-        if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
-        typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(erase, erasingDelay);
-    } else {
-        cursorSpan.classList.remove("typing");
-        textArrayIndex++;
-        if (textArrayIndex >= textArray.length) textArrayIndex = 0; // Volta para o primeiro texto
-        setTimeout(type, typingDelay + 1100); // Atraso antes de começar a digitar o próximo
+    /* ================================== */
+    /* ANIMAÇÃO DE TEXTO DIGITADO NA HOME */
+    /* ================================== */
+    const typedTextSpan = document.querySelector(".typed-text");
+    const cursorSpan = document.querySelector(".cursor");
+
+    const textArray = ["seu sorriso.", "sua saúde.", "sua família."];
+    const typingDelay = 100;
+    const erasingDelay = 70;
+    const newTextDelay = 1500;
+    let textArrayIndex = 0;
+    let charIndex = 0;
+
+    const type = () => {
+        if (!typedTextSpan || !cursorSpan) return;
+
+        if (charIndex < textArray[textArrayIndex].length) {
+            if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+            typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(type, typingDelay);
+        } else {
+            cursorSpan.classList.remove("typing");
+            setTimeout(erase, newTextDelay);
+        }
+    };
+
+    const erase = () => {
+        if (!typedTextSpan || !cursorSpan) return;
+
+        if (charIndex > 0) {
+            if (!cursorSpan.classList.contains("typing")) cursorSpan.classList.add("typing");
+            typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(erase, erasingDelay);
+        } else {
+            cursorSpan.classList.remove("typing");
+            textArrayIndex = (textArrayIndex + 1) % textArray.length;
+            setTimeout(type, typingDelay + 1100);
+        }
+    };
+
+    if (typedTextSpan && cursorSpan && textArray.length) {
+        setTimeout(type, newTextDelay + 250);
     }
-}
-
-// Inicia a animação quando a página carrega
-document.addEventListener("DOMContentLoaded", function() {
-    if (textArray.length) setTimeout(type, newTextDelay + 250); // Pequeno delay inicial
 
     /* ================================== */
     /* GRADIENTE INTERATIVO DA HOME       */
@@ -107,16 +101,113 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (heroSection) {
         heroSection.addEventListener("mousemove", (e) => {
-            // Pega as dimensões e posição da seção
-            let rect = heroSection.getBoundingClientRect();
-            
-            // Calcula a posição X e Y do mouse DENTRO da seção
-            let x = e.clientX - rect.left;
-            let y = e.clientY - rect.top;
+            const rect = heroSection.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-            // Atualiza as variáveis CSS (--mouse-x, --mouse-y) em tempo real
-            heroSection.style.setProperty('--mouse-x', `${x}px`);
-            heroSection.style.setProperty('--mouse-y', `${y}px`);
+            heroSection.style.setProperty("--mouse-x", `${x}px`);
+            heroSection.style.setProperty("--mouse-y", `${y}px`);
         });
     }
+
+    /* ================================== */
+    /* SLIDERS GERAIS                     */
+    /* ================================== */
+    const sliderContainers = document.querySelectorAll("[data-slider]");
+
+    sliderContainers.forEach((slider) => {
+        const slides = slider.querySelectorAll(".slide");
+        const dots = slider.querySelectorAll(".slider-dot");
+        if (!slides.length) return;
+
+        let currentIndex = 0;
+        const interval = Number(slider.dataset.interval) || 5000;
+        let timerId = null;
+
+        const activateSlide = (index) => {
+            slides.forEach((slide, slideIndex) => {
+                const isActive = slideIndex === index;
+                slide.classList.toggle("active", isActive);
+                slide.setAttribute("aria-hidden", String(!isActive));
+            });
+
+            dots.forEach((dot, dotIndex) => {
+                const isActive = dotIndex === index;
+                dot.classList.toggle("active", isActive);
+                dot.setAttribute("aria-selected", isActive ? "true" : "false");
+            });
+
+            currentIndex = index;
+        };
+
+        const startSlider = () => {
+            if (slides.length < 2) return;
+            timerId = setInterval(() => {
+                const nextIndex = (currentIndex + 1) % slides.length;
+                activateSlide(nextIndex);
+            }, interval);
+        };
+
+        const restartSlider = () => {
+            if (timerId) clearInterval(timerId);
+            startSlider();
+        };
+
+        activateSlide(0);
+        startSlider();
+
+        dots.forEach((dot) => {
+            dot.addEventListener("click", () => {
+                const targetIndex = Number(dot.dataset.slide);
+                if (Number.isNaN(targetIndex) || targetIndex === currentIndex) return;
+                activateSlide(targetIndex);
+                restartSlider();
+            });
+        });
+    });
+
+    /* ================================== */
+    /* ACORDEÃO INTERATIVO                */
+    /* ================================== */
+    const accordionItems = document.querySelectorAll(".accordion-item");
+
+    const closeItem = (item) => {
+        const trigger = item.querySelector(".accordion-trigger");
+        const panel = item.querySelector(".accordion-panel");
+        if (!trigger || !panel) return;
+
+        item.classList.remove("open");
+        trigger.setAttribute("aria-expanded", "false");
+        panel.setAttribute("aria-hidden", "true");
+        panel.style.maxHeight = null;
+    };
+
+    const openItem = (item) => {
+        const trigger = item.querySelector(".accordion-trigger");
+        const panel = item.querySelector(".accordion-panel");
+        if (!trigger || !panel) return;
+
+        item.classList.add("open");
+        trigger.setAttribute("aria-expanded", "true");
+        panel.setAttribute("aria-hidden", "false");
+        panel.style.maxHeight = `${panel.scrollHeight}px`;
+    };
+
+    accordionItems.forEach((item) => {
+        const trigger = item.querySelector(".accordion-trigger");
+        if (!trigger) return;
+
+        trigger.addEventListener("click", () => {
+            const isOpen = item.classList.contains("open");
+            accordionItems.forEach((otherItem) => {
+                if (otherItem !== item) closeItem(otherItem);
+            });
+
+            if (isOpen) {
+                closeItem(item);
+            } else {
+                openItem(item);
+            }
+        });
+    });
 });

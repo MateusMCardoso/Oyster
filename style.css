@@ -79,6 +79,16 @@ li {
 .hamburger {
     display: none;
     cursor: pointer;
+    background: transparent;
+    border: none;
+    padding: 0.25rem;
+    line-height: 0;
+    border-radius: 6px;
+}
+
+.hamburger:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
 }
 
 .bar {
@@ -187,6 +197,274 @@ li {
     height: auto;
     width: 100%;
     display: block;
+}
+
+/* ================================== */
+/* SEÇÃO DESTAQUE COM SLIDER + ACORDEÃO */
+/* ================================== */
+.care-highlight {
+    display: flex;
+    gap: 0;
+    padding: 0;
+    background-color: #f4f2ee;
+    color: var(--dark-blue);
+}
+
+.care-highlight > div {
+    flex: 1;
+}
+
+.care-slider {
+    background: var(--white);
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    overflow: hidden;
+}
+
+.slider-frame {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    min-height: 420px;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: scale(1);
+    position: absolute;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.65rem 1rem;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+}
+
+.slider-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    border: none;
+    background-color: rgba(10, 25, 60, 0.2);
+    cursor: pointer;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.slider-dot.active {
+    width: 40px;
+    background-color: var(--gold);
+}
+
+.care-accordion {
+    background: #e7e4dd;
+    border-radius: 0;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.accordion-title {
+    font-family: "Rakkas", serif;
+    font-size: 2.4rem;
+    line-height: 1.1;
+    font-weight: 300;
+    color: var(--gold);
+}
+
+.accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.accordion-item {
+    border-bottom: 1px solid rgba(10, 25, 60, 0.15);
+}
+
+.accordion-trigger {
+    width: 100%;
+    padding: 1rem 0;
+    background: transparent;
+    border: none;
+    color: var(--dark-blue);
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+}
+
+.accordion-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.accordion-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    color: #4b4b4b;
+}
+
+.accordion-panel p {
+    padding-bottom: 1rem;
+}
+
+.accordion-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+    display: inline-block;
+}
+
+.accordion-panel ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.accordion-panel li {
+    list-style: disc;
+    margin-bottom: 0.35rem;
+}
+
+.accordion-item.open .accordion-panel {
+    max-height: 200px;
+}
+
+.accordion-item.open .accordion-icon {
+    transform: rotate(45deg);
+}
+
+.story-section {
+    display: flex;
+    gap: 4rem;
+    background-color: #dcd9d1;
+    color: var(--dark-blue);
+    padding: 6rem 5rem;
+    align-items: stretch;
+    min-height: 90vh;
+}
+
+.story-content {
+    flex: 1;
+    padding: 3rem;
+    background: #dcd9d1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    justify-content: center;
+    max-width: 540px;
+}
+
+.story-content h2 {
+    font-size: 3rem;
+    letter-spacing: 0.06em;
+}
+
+.story-content p {
+    color: rgba(10, 25, 60, 0.85);
+    line-height: 1.6;
+}
+
+.story-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 0.85rem 2rem;
+    border-radius: 999px;
+    border: 1px solid var(--gold);
+    color: var(--dark-blue);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.story-btn:hover,
+.story-btn:focus-visible {
+    background: var(--gold);
+    color: var(--white);
+}
+
+.story-slider {
+    flex: 1;
+    position: relative;
+    background: #000;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.story-slider .slider-frame {
+    min-height: 620px;
+}
+
+.bio-card {
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    padding: 1.75rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--dark-blue);
+    box-shadow: 0 20px 45px rgba(10, 25, 60, 0.25);
+}
+
+.bio-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.bio-title {
+    font-size: 1.4rem;
+}
+
+.bio-role {
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.bio-text {
+    line-height: 1.5;
+    color: rgba(10, 25, 60, 0.9);
 }
 
 /* ================================== */
@@ -354,5 +632,49 @@ li {
         bottom: 0;
         left: 35%;
         transform: translateX(-50%);
+    }
+
+    .care-highlight {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .slider-frame {
+        min-height: 260px;
+    }
+
+    .care-accordion {
+        padding: 2rem;
+    }
+
+    .accordion-trigger {
+        font-size: 1rem;
+    }
+
+    .accordion-title {
+        font-size: 2rem;
+    }
+
+    .story-section {
+        flex-direction: column;
+        padding: 3.5rem 1.5rem;
+        min-height: unset;
+    }
+
+    .story-content {
+        padding: 2rem 0;
+        max-width: none;
+    }
+
+    .story-content h2 {
+        font-size: 2.2rem;
+    }
+
+    .story-slider {
+        border-radius: 16px;
+    }
+
+    .story-slider .slider-frame {
+        min-height: 420px;
     }
 }

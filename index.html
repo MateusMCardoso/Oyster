@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
     <header>
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Menu principal">
             <a href="index.html" class="nav-logo">
                 <img src="src/logo_full_fundo_azul.svg" alt="Oyster Dental Logo">
             </a>
-            
-            <ul class="nav-menu">
+
+            <ul class="nav-menu" id="primary-navigation">
                 <li class="nav-item">
                     <a href="#" class="nav-link">Home</a>
                 </li>
@@ -31,26 +30,193 @@
                     <a href="#" class="nav-link">Contato</a>
                 </li>
             </ul>
-            
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
+
+            <button
+                type="button"
+                class="hamburger"
+                aria-expanded="false"
+                aria-controls="primary-navigation"
+                aria-label="Alternar navegação"
+            >
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+            </button>
         </nav>
     </header>
 
-    <section class="home-hero">
-        <div class="hero-content">
-            <h1 class="hero-title">Protegemos<br><span class="typed-text"></span><span class="cursor">&nbsp;</span></h1>
-            <img src="src/stars.png" alt="Estrelas decorativas" class="hero-stars">
-        </div>
-        <div class="hero-image">
-            <img src="src/modelo_home.png" alt="Mulher sorrindo" class="model-img">
-        </div>
-    </section>
-    
-    <a href="https://wa.me/SEU_NUMERO_AQUI" class="whatsapp-button" target="_blank">
+    <main>
+        <section class="home-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Protegemos<br>
+                    <span class="typed-text" aria-live="polite"></span><span class="cursor">&nbsp;</span>
+                </h1>
+                <img src="src/stars.png" alt="Estrelas decorativas" class="hero-stars">
+            </div>
+            <div class="hero-image">
+                <img src="src/modelo_home.png" alt="Mulher sorrindo" class="model-img">
+            </div>
+        </section>
+
+        <section class="care-highlight" aria-label="Tratamentos em destaque">
+            <div class="care-slider" aria-live="polite" data-slider data-interval="5000">
+                <div class="slider-frame">
+                    <article class="slide active" id="slide-1" aria-hidden="false">
+                        <img src="src/modelo_home.png" alt="Equipe acolhendo paciente sorridente">
+                    </article>
+                    <article class="slide" id="slide-2" aria-hidden="true">
+                        <img src="src/modelo_home_2.png" alt="Dentista e paciente em consulta">
+                    </article>
+                    <article class="slide" id="slide-3" aria-hidden="true">
+                        <img src="src/modelo_home.png" alt="Detalhe de profissional sorrindo">
+                    </article>
+                    <div class="slider-dots" role="tablist" aria-label="Trocar imagem do slide">
+                        <button class="slider-dot active" data-slide="0" aria-label="Slide 1" aria-controls="slide-1" role="tab" aria-selected="true"></button>
+                        <button class="slider-dot" data-slide="1" aria-label="Slide 2" aria-controls="slide-2" role="tab" aria-selected="false"></button>
+                        <button class="slider-dot" data-slide="2" aria-label="Slide 3" aria-controls="slide-3" role="tab" aria-selected="false"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="care-accordion">
+                <header class="accordion-heading">
+                    <h2 class="accordion-title">Principais<br>tratamentos</h2>
+                </header>
+                <div class="accordion-list">
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger" aria-expanded="false">
+                            Facetas de Porcelana
+                            <span class="accordion-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="accordion-panel" aria-hidden="true">
+                            <p class="accordion-tag">NEXT</p>
+                            <p>As facetas de porcelana são o segredo por trás de sorrisos perfeitos e naturais. Com camadas ultrafinas aplicadas sobre os dentes, elas corrigem imperfeições preservando ao máximo a estrutura natural.</p>
+                            <p>Indicado para dentes manchados, desalinhados, desgastados ou com formato irregular.</p>
+                            <p><strong>Benefícios:</strong></p>
+                            <ul>
+                                <li>Resultado natural que respeita textura e cor dos dentes.</li>
+                                <li>Durabilidade e resistência mantendo brilho por muitos anos.</li>
+                                <li>Correção estética completa para manchas, desalinhamentos e desgastes.</li>
+                                <li>Resistente a manchas para conservar a tonalidade ideal.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger" aria-expanded="false">
+                            Implantes Dentários
+                            <span class="accordion-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="accordion-panel" aria-hidden="true">
+                            <p class="accordion-tag">NEXT</p>
+                            <p>Os implantes dentários devolvem função, estética e autoestima. Mais do que um tratamento, é a reconstrução da qualidade de vida, mastigando bem, falando com segurança e sorrindo sem medo.</p>
+                            <p><strong>Benefícios:</strong></p>
+                            <ul>
+                                <li>Função restaurada para mastigar, falar e sorrir com conforto.</li>
+                                <li>Aparência natural com próteses personalizadas.</li>
+                                <li>Prevenção da perda óssea e manutenção do contorno facial.</li>
+                                <li>Alta durabilidade quando bem cuidados.</li>
+                                <li>Autoconfiança renovada para viver sem restrições.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger" aria-expanded="false">
+                            Alinhadores Transparentes
+                            <span class="accordion-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="accordion-panel" aria-hidden="true">
+                            <p class="accordion-tag">NEXT</p>
+                            <p>A evolução dos aparelhos ortodônticos: confortáveis, removíveis e praticamente invisíveis. Alinham seus dentes de forma rápida e previsível sem comprometer sua aparência.</p>
+                            <p>Diferenciais: planejamento digital 3D com scanner iTero™, trocas periódicas e resultados em poucos meses.</p>
+                            <p><strong>Benefícios:</strong></p>
+                            <ul>
+                                <li>Discrição total: quase invisíveis.</li>
+                                <li>Conforto e liberdade sem fios ou metais.</li>
+                                <li>Facilidade de uso: removíveis para comer e higienizar.</li>
+                                <li>Resultados previsíveis com monitoramento digital.</li>
+                                <li>Menos visitas ao consultório com acompanhamento inteligente.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger" aria-expanded="false">
+                            Prevenção e Higiene Bucal
+                            <span class="accordion-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="accordion-panel" aria-hidden="true">
+                            <p class="accordion-tag">NEXT</p>
+                            <p>A saúde bucal começa pela prevenção. Limpezas profissionais personalizadas e acompanhamento contínuo garantem gengivas saudáveis e dentes limpos.</p>
+                            <p><strong>Tipos:</strong> profunda, profilaxia, infantil e selantes dentais para proteção extra contra cáries.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger" aria-expanded="false">
+                            Cirurgias e Procedimentos Avançados
+                            <span class="accordion-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="accordion-panel" aria-hidden="true">
+                            <p class="accordion-tag">NEXT</p>
+                            <p>Tecnologia e precisão ao seu alcance. Especialização em cirurgias orais com técnicas modernas, anestesia segura e recuperação tranquila.</p>
+                            <p><strong>Procedimentos:</strong> extrações simples e de sisos, enxertos ósseos, gengivectomia e frenectomia.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button type="button" class="accordion-trigger" aria-expanded="false">
+                            Reabilitação Oral
+                            <span class="accordion-icon" aria-hidden="true">+</span>
+                        </button>
+                        <div class="accordion-panel" aria-hidden="true">
+                            <p class="accordion-tag">NEXT</p>
+                            <p>Reescreva sua história através do seu sorriso. Tratamento completo que une estética, função e saúde para restaurar totalmente o sorriso.</p>
+                            <p>Com tecnologia e olhar humano, transformamos o cuidado odontológico em uma experiência de bem-estar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section" aria-label="Conheça a Oyster Dental">
+            <div class="story-content">
+                <h2>O CORAÇÃO DA OYSTER DENTAL</h2>
+                <p>A Oyster Dental Clinic nasceu do sonho de levar o melhor da odontologia brasileira aos brasileiros que vivem nos Estados Unidos. Sob a liderança da Dra. Ana Paula Ott, com mais de 20 anos de experiência, nossa equipe oferece um cuidado humano, preciso e acolhedor.</p>
+                <p>Acreditamos que o processo é tão importante quanto o resultado. Cada paciente é acompanhado de perto, com atenção desde a primeira conversa até o sorriso final.</p>
+                <p>Localizada em Metrowest – Orlando, com equipamentos de última geração e atendimento em português, inglês e espanhol.</p>
+                <p>Segurança, qualidade e transparência são nossos pilares. Nosso propósito é fazer você sorrir com confiança, beleza e tranquilidade.</p>
+                <a href="#" class="story-btn">Leia Mais</a>
+            </div>
+            <div class="story-slider" aria-live="polite" data-slider data-interval="6500">
+                <div class="slider-frame">
+                    <article class="slide active" id="story-slide-1" aria-hidden="false">
+                        <img src="src/modelo_home.png" alt="Dra. Ana Paula Ott">
+                        <div class="bio-card">
+                            <div class="bio-header">
+                                <h3 class="bio-title">Dra. Ana Paula Ott</h3>
+                                <span class="bio-role">DMD</span>
+                            </div>
+                            <p class="bio-text">Natural de São José dos Campos, formou-se em Odontologia pela UNESP e se especializou em Implantodontia pela UNITAU. Com mais de 20 anos de experiência em restauração de sorrisos, revalidou o diploma na Rutgers School of Dental Medicine e hoje dirige a Oyster Dental em Orlando.</p>
+                        </div>
+                    </article>
+                    <article class="slide" id="story-slide-2" aria-hidden="true">
+                        <img src="src/modelo_home_2.png" alt="Udo Ulrich Ott">
+                        <div class="bio-card">
+                            <div class="bio-header">
+                                <h3 class="bio-title">Udo Ulrich Ott</h3>
+                                <span class="bio-role">Diretor Executivo</span>
+                            </div>
+                            <p class="bio-text">Natural de São José dos Campos, formou-se em Odontologia pela PUC-Campinas, com especialização em implantes pela UNITAU. Liderou clínicas de sucesso no Brasil e hoje atua como Diretor Executivo da Oyster Dental, compartilhando seu conhecimento em mentoria odontológica.</p>
+                        </div>
+                    </article>
+                    <div class="slider-dots" role="tablist" aria-label="Trocar perfis">
+                        <button class="slider-dot active" data-slide="0" aria-label="Perfil 1" aria-controls="story-slide-1" role="tab" aria-selected="true"></button>
+                        <button class="slider-dot" data-slide="1" aria-label="Perfil 2" aria-controls="story-slide-2" role="tab" aria-selected="false"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="https://wa.me/SEU_NUMERO_AQUI" class="whatsapp-button" target="_blank" rel="noopener noreferrer" aria-label="Entre em contato pelo WhatsApp">
         <img src="src/whatsapp.svg" alt="Entrar em contato pelo WhatsApp" class="whatsapp-icon">
         <span class="whatsapp-text">Entre em contato</span>
     </a>
