@@ -118,10 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
     sliderContainers.forEach((slider) => {
         const slides = slider.querySelectorAll(".slide");
         const dots = slider.querySelectorAll(".slider-dot");
+        const prevButton = slider.querySelector("[data-slider-prev]");
+        const nextButton = slider.querySelector("[data-slider-next]");
         if (!slides.length) return;
 
         let currentIndex = 0;
         const interval = Number(slider.dataset.interval) || 5000;
+        const shouldAutoplay = slider.dataset.autoplay !== "false";
         let timerId = null;
 
         const activateSlide = (index) => {
@@ -140,15 +143,23 @@ document.addEventListener("DOMContentLoaded", () => {
             currentIndex = index;
         };
 
+        const goToSlide = (index) => {
+            const normalizedIndex = (index + slides.length) % slides.length;
+            activateSlide(normalizedIndex);
+        };
+
+        const goToNext = () => goToSlide(currentIndex + 1);
+        const goToPrev = () => goToSlide(currentIndex - 1);
+
         const startSlider = () => {
-            if (slides.length < 2) return;
+            if (!shouldAutoplay || slides.length < 2) return;
             timerId = setInterval(() => {
-                const nextIndex = (currentIndex + 1) % slides.length;
-                activateSlide(nextIndex);
+                goToNext();
             }, interval);
         };
 
         const restartSlider = () => {
+            if (!shouldAutoplay) return;
             if (timerId) clearInterval(timerId);
             startSlider();
         };
@@ -156,11 +167,25 @@ document.addEventListener("DOMContentLoaded", () => {
         activateSlide(0);
         startSlider();
 
+        if (prevButton) {
+            prevButton.addEventListener("click", () => {
+                goToPrev();
+                restartSlider();
+            });
+        }
+
+        if (nextButton) {
+            nextButton.addEventListener("click", () => {
+                goToNext();
+                restartSlider();
+            });
+        }
+
         dots.forEach((dot) => {
             dot.addEventListener("click", () => {
                 const targetIndex = Number(dot.dataset.slide);
                 if (Number.isNaN(targetIndex) || targetIndex === currentIndex) return;
-                activateSlide(targetIndex);
+                goToSlide(targetIndex);
                 restartSlider();
             });
         });

@@ -53,6 +53,7 @@
                     <span class="typed-text" aria-live="polite"></span><span class="cursor">&nbsp;</span>
                 </h1>
                 <img src="src/stars.png" alt="Estrelas decorativas" class="hero-stars">
+                <a href="#contato" class="hero-cta">Agende sua consulta</a>
             </div>
             <div class="hero-image">
                 <img src="src/modelo_home.png" alt="Mulher sorrindo" class="model-img">
@@ -63,13 +64,13 @@
             <div class="care-slider" aria-live="polite" data-slider data-interval="5000">
                 <div class="slider-frame">
                     <article class="slide active" id="slide-1" aria-hidden="false">
-                        <img src="src/modelo_home.png" alt="Equipe acolhendo paciente sorridente">
+                        <img src="src/slide_session01_01.png" alt="Equipe acolhendo paciente sorridente">
                     </article>
                     <article class="slide" id="slide-2" aria-hidden="true">
-                        <img src="src/modelo_home_2.png" alt="Dentista e paciente em consulta">
+                        <img src="src/slide_session01_02.png" alt="Dentista e paciente em consulta">
                     </article>
                     <article class="slide" id="slide-3" aria-hidden="true">
-                        <img src="src/modelo_home.png" alt="Detalhe de profissional sorrindo">
+                        <img src="src/slide_session01_03.png" alt="Detalhe de profissional sorrindo">
                     </article>
                     <div class="slider-dots" role="tablist" aria-label="Trocar imagem do slide">
                         <button class="slider-dot active" data-slide="0" aria-label="Slide 1" aria-controls="slide-1" role="tab" aria-selected="true"></button>
@@ -178,17 +179,20 @@
 
         <section class="story-section" aria-label="Conheça a Oyster Dental">
             <div class="story-content">
-                <h2>O CORAÇÃO DA OYSTER DENTAL</h2>
+                <h2>
+                    <span class="story-title-line story-title-line--gold">O CORAÇÃO DA</span>
+                    <span class="story-title-line story-title-line--blue">OYSTER DENTAL</span>
+                </h2>
                 <p>A Oyster Dental Clinic nasceu do sonho de levar o melhor da odontologia brasileira aos brasileiros que vivem nos Estados Unidos. Sob a liderança da Dra. Ana Paula Ott, com mais de 20 anos de experiência, nossa equipe oferece um cuidado humano, preciso e acolhedor.</p>
                 <p>Acreditamos que o processo é tão importante quanto o resultado. Cada paciente é acompanhado de perto, com atenção desde a primeira conversa até o sorriso final.</p>
                 <p>Localizada em Metrowest – Orlando, com equipamentos de última geração e atendimento em português, inglês e espanhol.</p>
                 <p>Segurança, qualidade e transparência são nossos pilares. Nosso propósito é fazer você sorrir com confiança, beleza e tranquilidade.</p>
                 <a href="#" class="story-btn">Leia Mais</a>
             </div>
-            <div class="story-slider" aria-live="polite" data-slider data-interval="6500">
+            <div class="story-slider" aria-live="polite" data-slider data-interval="6500" data-autoplay="false">
                 <div class="slider-frame">
                     <article class="slide active" id="story-slide-1" aria-hidden="false">
-                        <img src="src/modelo_home.png" alt="Dra. Ana Paula Ott">
+                        <img src="src/slide_session02_01.png" alt="Dra. Ana Paula Ott">
                         <div class="bio-card">
                             <div class="bio-header">
                                 <h3 class="bio-title">Dra. Ana Paula Ott</h3>
@@ -198,7 +202,7 @@
                         </div>
                     </article>
                     <article class="slide" id="story-slide-2" aria-hidden="true">
-                        <img src="src/modelo_home_2.png" alt="Udo Ulrich Ott">
+                        <img src="src/slide_session02_02.png" alt="Udo Ulrich Ott">
                         <div class="bio-card">
                             <div class="bio-header">
                                 <h3 class="bio-title">Udo Ulrich Ott</h3>
@@ -207,9 +211,73 @@
                             <p class="bio-text">Natural de São José dos Campos, formou-se em Odontologia pela PUC-Campinas, com especialização em implantes pela UNITAU. Liderou clínicas de sucesso no Brasil e hoje atua como Diretor Executivo da Oyster Dental, compartilhando seu conhecimento em mentoria odontológica.</p>
                         </div>
                     </article>
-                    <div class="slider-dots" role="tablist" aria-label="Trocar perfis">
-                        <button class="slider-dot active" data-slide="0" aria-label="Perfil 1" aria-controls="story-slide-1" role="tab" aria-selected="true"></button>
-                        <button class="slider-dot" data-slide="1" aria-label="Perfil 2" aria-controls="story-slide-2" role="tab" aria-selected="false"></button>
+                    <button type="button" class="slider-arrow slider-arrow--prev" data-slider-prev aria-label="Perfil anterior">
+                        <span class="arrow-icon" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="slider-arrow slider-arrow--next" data-slider-next aria-label="Próximo perfil">
+                        <span class="arrow-icon" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="club-section" aria-label="Oyster Dental Club">
+            <div class="club-media">
+                <img src="src/foto_club_01.png" alt="Paciente segurando o cartão Oyster Dental Club">
+            </div>
+            <div class="club-content">
+                <div class="club-text">
+                    <h2>
+                        <span class="story-title-line story-title-line--gold">Bem-vindo ao</span>
+                        <span class="story-title-line story-title-line--blue">Oyster Dental Club</span>
+                    </h2>
+                    <p class="club-subtitle">
+                        O cuidado que o seu sorriso merece, de um jeito prático e acessível.
+                    </p>
+                    <p>Um cuidado completo, com exclusividade e propósito.</p>
+                    <p>
+                        Criamos o Oyster Dental Club para cuidar de quem valoriza a prevenção, mas não tem um plano
+                        odontológico tradicional.
+                    </p>
+                    <p>
+                        Aqui, você se torna membro de uma comunidade exclusiva que acredita que cuidar da saúde bucal é
+                        investir em bem-estar e autoestima.
+                    </p>
+                    <p>
+                        Nosso compromisso é oferecer odontologia acessível, personalizada e de alto padrão, com benefícios
+                        que fazem diferença no dia a dia.
+                    </p>
+                    <p>Seja individual ou familiar, há um plano ideal para o seu momento.</p>
+                    <p>Faça parte e descubra uma nova forma de cuidar do seu sorriso.</p>
+                </div>
+                <div class="club-info" data-slider data-autoplay="false">
+                    <div class="slider-frame">
+                        <article class="slide active" aria-hidden="false">
+                            <p class="club-info-text">
+                                O Oyster Club é uma rede de benefícios para quem acredita no poder da prevenção.
+                            </p>
+                        </article>
+                        <article class="slide" aria-hidden="true">
+                            <p class="club-info-text">
+                                Parceria com Colgate: 30% de desconto em produtos selecionados. Cuide do seu sorriso com as melhores marcas.
+                            </p>
+                        </article>
+                        <article class="slide" aria-hidden="true">
+                            <p class="club-info-text">
+                                Rede de parceiros: Descontos de até 10% em produtos e serviços aliados ao bem-estar e autocuidado.
+                            </p>
+                        </article>
+                        <button type="button" class="club-arrow club-arrow--prev" data-slider-prev aria-label="Informação anterior">
+                            <span class="arrow-icon" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="club-arrow club-arrow--next" data-slider-next aria-label="Próxima informação">
+                            <span class="arrow-icon" aria-hidden="true"></span>
+                        </button>
+                        <div class="slider-dots club-dots" role="tablist" aria-label="Benefícios do Oyster Dental Club">
+                            <button class="slider-dot active" data-slide="0" aria-label="Benefício 1" role="tab" aria-selected="true"></button>
+                            <button class="slider-dot" data-slide="1" aria-label="Benefício 2" role="tab" aria-selected="false"></button>
+                            <button class="slider-dot" data-slide="2" aria-label="Benefício 3" role="tab" aria-selected="false"></button>
+                        </div>
                     </div>
                 </div>
             </div>
