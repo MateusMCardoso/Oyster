@@ -429,6 +429,8 @@ li {
     flex-direction: column;
     gap: 1.2rem;
     justify-content: center;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .story-content h2 {
@@ -457,11 +459,18 @@ li {
 .story-content p {
     color: rgba(10, 25, 60, 0.85);
     line-height: 1.6;
-    padding-right: 15rem;
+    padding-right: 0;
+    max-width: 520px;
+    text-align: left;
 }
 
 .story-btn {
     margin-top: 1.25rem;
+}
+
+.story-content .story-btn {
+    display: none;
+    pointer-events: none;
 }
 
 .story-slider {
@@ -958,7 +967,7 @@ li {
         justify-content: flex-end;
         align-items: center;
         gap: 0.75rem;
-        padding-bottom: 20vh;
+        padding-bottom: 12vh;
     }
 
     .hero-title {
