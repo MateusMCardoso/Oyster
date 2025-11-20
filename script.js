@@ -111,6 +111,37 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const footerSection = document.querySelector(".site-footer");
+
+    if (footerSection) {
+        const updateFooterGradient = (clientX, clientY) => {
+            const rect = footerSection.getBoundingClientRect();
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+            footerSection.style.setProperty("--footer-mouse-x", `${x}px`);
+            footerSection.style.setProperty("--footer-mouse-y", `${y}px`);
+        };
+
+        footerSection.addEventListener("mousemove", (event) => {
+            updateFooterGradient(event.clientX, event.clientY);
+        });
+
+        footerSection.addEventListener("touchmove", (event) => {
+            if (!event.touches.length) return;
+            const touch = event.touches[0];
+            updateFooterGradient(touch.clientX, touch.clientY);
+        }, { passive: true });
+
+        const resetFooterGradient = () => {
+            footerSection.style.setProperty("--footer-mouse-x", "50%");
+            footerSection.style.setProperty("--footer-mouse-y", "50%");
+        };
+
+        footerSection.addEventListener("mouseleave", resetFooterGradient);
+        footerSection.addEventListener("touchend", resetFooterGradient);
+        footerSection.addEventListener("touchcancel", resetFooterGradient);
+    }
+
     const updateWhatsAppVisibility = () => {
         if (!whatsappButton) return;
         if (!mobileMediaQuery.matches || !heroSection) {
