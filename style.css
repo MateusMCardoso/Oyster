@@ -156,6 +156,7 @@ li {
     font-weight: 300;
     color: var(--gold);
     line-height: 1;
+    margin-top: 3rem;
     margin-bottom: 1rem;
     margin-left: 10rem;
     max-width: 600px;
@@ -195,7 +196,7 @@ li {
 
 .hero-cta {
     margin-left: 10rem;
-    margin-top: 3rem;
+    margin-top: 4.5rem;
 }
 
 .hero-cta:hover,
@@ -1087,7 +1088,7 @@ li {
         justify-content: flex-end;
         align-items: center;
         gap: 0.75rem;
-        padding-bottom: 12vh;
+        padding-bottom: 8vh;
     }
 
     .hero-title {
