@@ -15,19 +15,19 @@
 
             <ul class="nav-menu" id="primary-navigation">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="#home" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Serviços</a>
+                    <a href="#servicos" class="nav-link">Serviços</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Equipe</a>
+                    <a href="#equipe" class="nav-link">Equipe</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Oyster Dental Club</a>
+                    <a href="#club" class="nav-link">Oyster Dental Club</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">Contato</a>
+                    <a href="#contato" class="nav-link">Contato</a>
                 </li>
             </ul>
 
@@ -46,21 +46,21 @@
     </header>
 
     <main>
-        <section class="home-hero">
+        <section class="home-hero" id="home">
             <div class="hero-content">
                 <h1 class="hero-title">
                     Protegemos<br>
                     <span class="typed-text" aria-live="polite"></span><span class="cursor">&nbsp;</span>
                 </h1>
                 <img src="src/stars.png" alt="Estrelas decorativas" class="hero-stars">
-                <a href="#contato" class="hero-cta">Agende sua consulta</a>
+        <a href="tel:+14074519077" class="hero-cta">Agende sua consulta</a>
             </div>
             <div class="hero-image">
                 <img src="src/modelo_home.png" alt="Mulher sorrindo" class="model-img">
             </div>
         </section>
 
-        <section class="care-highlight" aria-label="Tratamentos em destaque">
+        <section class="care-highlight" id="servicos" aria-label="Tratamentos em destaque">
             <div class="care-slider" aria-live="polite" data-slider data-interval="5000">
                 <div class="slider-frame">
                     <article class="slide active" id="slide-1" aria-hidden="false">
@@ -177,7 +177,7 @@
             </div>
         </section>
 
-        <section class="story-section" aria-label="Conheça a Oyster Dental">
+        <section class="story-section" id="equipe" aria-label="Conheça a Oyster Dental">
             <div class="story-content">
                 <h2>
                     <span class="story-title-line story-title-line--gold">O CORAÇÃO DA</span>
@@ -217,11 +217,15 @@
                     <button type="button" class="slider-arrow slider-arrow--next" data-slider-next aria-label="Próximo perfil">
                         <span class="arrow-icon" aria-hidden="true"></span>
                     </button>
+                    <div class="slider-dots story-dots" role="tablist" aria-label="Trocar perfil da equipe">
+                        <button class="slider-dot active" data-slide="0" aria-label="Perfil 1" role="tab" aria-selected="true"></button>
+                        <button class="slider-dot" data-slide="1" aria-label="Perfil 2" role="tab" aria-selected="false"></button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="club-section" aria-label="Oyster Dental Club">
+        <section class="club-section" id="club" aria-label="Oyster Dental Club">
             <div class="club-media">
                 <img src="src/foto_club_01.png" alt="Paciente segurando o cartão Oyster Dental Club">
             </div>
@@ -283,14 +287,14 @@
             </div>
         </section>
 
-        <section class="join-section" aria-label="Como participar do Oyster Dental Club">
+        <section class="join-section" id="contato" aria-label="Como participar do Oyster Dental Club">
             <div class="join-text">
                 <h2>Como participar</h2>
                 <p class="join-subtitle">Cadastre-se online agora mesmo ou entre em contato:</p>
                 <p class="join-phone" aria-label="Telefone para contato">(407) 451-9077</p>
                 <p>Nossa equipe terá prazer em te ajudar a escolher o plano ideal.</p>
                 <p>Oyster Dental Club, o cuidado que transforma o sorriso em um estilo de vida.</p>
-                <a href="#contato" class="story-btn join-btn">Assinar agora</a>
+                <a href="tel:+14074519077" class="story-btn join-btn">Assinar agora</a>
             </div>
             <div class="join-media">
                 <img src="src/slide_session05_01.png" alt="Equipe Oyster Dental sorrindo">
@@ -318,7 +322,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/SEU_NUMERO_AQUI" class="whatsapp-button" target="_blank" rel="noopener noreferrer" aria-label="Entre em contato pelo WhatsApp">
+    <a href="tel:+14074519077" class="whatsapp-button" aria-label="Entre em contato pelo WhatsApp">
         <img src="src/whatsapp.svg" alt="Entrar em contato pelo WhatsApp" class="whatsapp-icon">
         <span class="whatsapp-text">Entre em contato</span>
     </a>

@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* CÓDIGO DO BOTÃO WHATSAPP C/ DELAY  */
     /* ================================== */
     const whatsappButton = document.querySelector(".whatsapp-button");
+    const mobileMediaQuery = window.matchMedia("(max-width: 768px)");
     let leaveTimeout = null;
     const LEAVE_DELAY_MS = 50;
 
@@ -110,6 +111,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const updateWhatsAppVisibility = () => {
+        if (!whatsappButton) return;
+        if (!mobileMediaQuery.matches || !heroSection) {
+            whatsappButton.classList.remove("is-hidden");
+            return;
+        }
+
+        const heroHeight = heroSection.offsetHeight || window.innerHeight;
+        const shouldHide = window.scrollY < heroHeight * 0.8;
+        whatsappButton.classList.toggle("is-hidden", shouldHide);
+    };
+
+    updateWhatsAppVisibility();
+    window.addEventListener("scroll", updateWhatsAppVisibility, { passive: true });
+    window.addEventListener("resize", updateWhatsAppVisibility);
+    if (mobileMediaQuery.addEventListener) {
+        mobileMediaQuery.addEventListener("change", updateWhatsAppVisibility);
+    } else if (mobileMediaQuery.addListener) {
+        mobileMediaQuery.addListener(updateWhatsAppVisibility);
+    }
+
     /* ================================== */
     /* SLIDERS GERAIS                     */
     /* ================================== */
@@ -120,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const dots = slider.querySelectorAll(".slider-dot");
         const prevButton = slider.querySelector("[data-slider-prev]");
         const nextButton = slider.querySelector("[data-slider-next]");
+        const sliderFrame = slider.querySelector(".slider-frame");
         if (!slides.length) return;
 
         let currentIndex = 0;
@@ -189,6 +212,51 @@ document.addEventListener("DOMContentLoaded", () => {
                 restartSlider();
             });
         });
+
+        if (sliderFrame) {
+            let isTouching = false;
+            let touchStartX = 0;
+            let touchDiff = 0;
+            const swipeThreshold = 50;
+
+            sliderFrame.addEventListener(
+                "touchstart",
+                (event) => {
+                    if (event.touches.length !== 1) return;
+                    isTouching = true;
+                    touchStartX = event.touches[0].clientX;
+                    touchDiff = 0;
+                },
+                { passive: true }
+            );
+
+            sliderFrame.addEventListener(
+                "touchmove",
+                (event) => {
+                    if (!isTouching) return;
+                    touchDiff = event.touches[0].clientX - touchStartX;
+                },
+                { passive: true }
+            );
+
+            const handleTouchEnd = () => {
+                if (!isTouching) return;
+                if (Math.abs(touchDiff) > swipeThreshold) {
+                    if (touchDiff < 0) {
+                        goToNext();
+                    } else {
+                        goToPrev();
+                    }
+                    restartSlider();
+                }
+                isTouching = false;
+                touchStartX = 0;
+                touchDiff = 0;
+            };
+
+            sliderFrame.addEventListener("touchend", handleTouchEnd);
+            sliderFrame.addEventListener("touchcancel", handleTouchEnd);
+        }
     });
 
     /* ================================== */
