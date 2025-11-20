@@ -112,9 +112,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const footerSection = document.querySelector(".site-footer");
+    const footerMap = footerSection ? footerSection.querySelector(".footer-map") : null;
+    const footerMediaQuery = window.matchMedia("(max-width: 768px)");
+
+    const setFooterGradientToMap = () => {
+        if (!footerSection || !footerMap) return;
+        const footerRect = footerSection.getBoundingClientRect();
+        const mapRect = footerMap.getBoundingClientRect();
+        const centerX = mapRect.left + mapRect.width / 2 - footerRect.left;
+        const centerY = mapRect.top + mapRect.height / 2 - footerRect.top;
+        footerSection.style.setProperty("--footer-mouse-x", `${centerX}px`);
+        footerSection.style.setProperty("--footer-mouse-y", `${centerY}px`);
+    };
 
     if (footerSection) {
+        setFooterGradientToMap();
+
         const updateFooterGradient = (clientX, clientY) => {
+            if (footerMediaQuery.matches) return;
             const rect = footerSection.getBoundingClientRect();
             const x = clientX - rect.left;
             const y = clientY - rect.top;
@@ -126,20 +141,34 @@ document.addEventListener("DOMContentLoaded", () => {
             updateFooterGradient(event.clientX, event.clientY);
         });
 
-        footerSection.addEventListener("touchmove", (event) => {
-            if (!event.touches.length) return;
-            const touch = event.touches[0];
-            updateFooterGradient(touch.clientX, touch.clientY);
-        }, { passive: true });
+        footerSection.addEventListener(
+            "touchmove",
+            (event) => {
+                if (footerMediaQuery.matches || !event.touches.length) return;
+                const touch = event.touches[0];
+                updateFooterGradient(touch.clientX, touch.clientY);
+            },
+            { passive: true }
+        );
 
         const resetFooterGradient = () => {
-            footerSection.style.setProperty("--footer-mouse-x", "50%");
-            footerSection.style.setProperty("--footer-mouse-y", "50%");
+            setFooterGradientToMap();
         };
 
         footerSection.addEventListener("mouseleave", resetFooterGradient);
         footerSection.addEventListener("touchend", resetFooterGradient);
         footerSection.addEventListener("touchcancel", resetFooterGradient);
+        window.addEventListener("resize", setFooterGradientToMap);
+
+        const handleFooterBreakpoint = () => {
+            setFooterGradientToMap();
+        };
+
+        if (footerMediaQuery.addEventListener) {
+            footerMediaQuery.addEventListener("change", handleFooterBreakpoint);
+        } else if (footerMediaQuery.addListener) {
+            footerMediaQuery.addListener(handleFooterBreakpoint);
+        }
     }
 
     const updateWhatsAppVisibility = () => {
